@@ -218,4 +218,4 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-Conceito retirado do [Clean Code](https://github.com/felipe-augusto/clean-code-javascript)
+Conceito retirados do [Clean Code](https://github.com/felipe-augusto/clean-code-javascript) adaptação pt-br
