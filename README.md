@@ -1,7 +1,8 @@
 # frontend-code-review
 Structure for code review flow
 
-```Evite Mapeamento Mental
+```
+Evite Mapeamento Mental
 Explicito é melhor que implícito.
 
 Ruim:
@@ -26,9 +27,9 @@ locations.forEach((location) => {
   // ...
   // ...
   dispatch(location);
-});```
+});
 
-```Não adicione contextos desnecessários
+Não adicione contextos desnecessários
 Se o nome de sua classe/objeto já lhe diz alguma coisa, não as repita nos nomes de suas variáveis.
 
 Ruim:
@@ -52,8 +53,9 @@ const Car = {
 
 function paintCar(car) {
   car.color = 'Red';
-}```
-```Funções devem fazer uma coisa
+}
+
+Funções devem fazer uma coisa
 Essa é de longe a regra mais importante em engenharia de software. Quando funções fazem mais que uma coisa, elas se tornam difíceis de serem compostas, testadas e raciocinadas. Quando você pode isolar uma função para realizar apenas uma ação, elas podem ser refatoradas facilmente e seu código ficará muito mais limpo. Se você não levar mais nada desse guia além disso, você já estará na frente de muitos desenvolvedores.
 
 Ruim:
@@ -77,8 +79,9 @@ function emailActiveClients(clients) {
 function isActiveClient(client) {
   const clientRecord = database.lookup(client);
   return clientRecord.isActive();
-}```
-```Nomes de funções devem dizer o que elas fazem
+}
+
+Nomes de funções devem dizer o que elas fazem
 Ruim:
 
 function addToDate(date, month) {
@@ -96,8 +99,9 @@ function addMonthToDate(month, date) {
 }
 
 const date = new Date();
-addMonthToDate(1, date);```
-```Não use flags como parâmetros de funções
+addMonthToDate(1, date);
+
+Não use flags como parâmetros de funções
 Flags falam para o seu usuário que sua função faz mais de uma coisa. Funções devem fazer apenas uma coisa. Divida suas funções se elas estão seguindo caminhos de código diferentes baseadas em um valor boleano.
 
 Ruim:
@@ -117,8 +121,9 @@ function createFile(name) {
 
 function createTempFile(name) {
   createFile(`./temp/${name}`);
-}```
-```Favoreça programação funcional sobre programação imperativa
+}
+
+Favoreça programação funcional sobre programação imperativa
 JavaScript não é uma linguagem funcional da mesma forma que Haskell é, mas tem um toque de funcional em si. Linguagens funcionais são mais limpas e fáceis de se testar. Favoreça esse tipo de programação quando puder.
 
 Ruim:
@@ -144,6 +149,7 @@ let totalOutput = 0;
 for (let i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
+
 Bom:
 
 const programmerOutput = [
@@ -166,8 +172,9 @@ const INITIAL_VALUE = 0;
 
 const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
-  .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);````
-```Encapsule condicionais
+  .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
+  
+  Encapsule condicionais
 Ruim:
 
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
@@ -181,8 +188,9 @@ function shouldShowSpinner(fsm, listNode) {
 
 if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
-}```
-```Evite negações de condicionais
+}
+
+Evite negações de condicionais
 Ruim:
 
 function isDOMNodeNotPresent(node) {
