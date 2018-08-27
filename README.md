@@ -21,7 +21,7 @@ locations.forEach((l) => {
 
 Bom:
 
-```
+```js
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
   doStuff();
@@ -38,7 +38,7 @@ Se o nome de sua classe/objeto já lhe diz alguma coisa, não as repita nos nome
 
 Ruim:
 
-```
+```js
 const Car = {
   carMake: 'Honda',
   carModel: 'Accord',
@@ -52,7 +52,7 @@ function paintCar(car) {
 
 Bom:
 
-```
+```js
 const Car = {
   make: 'Honda',
   model: 'Accord',
@@ -69,7 +69,7 @@ Essa é de longe a regra mais importante em engenharia de software. Quando funç
 
 Ruim:
 
-```
+```js
 function emailClients(clients) {
   clients.forEach((client) => {
     const clientRecord = database.lookup(client);
@@ -82,7 +82,7 @@ function emailClients(clients) {
 
 Bom:
 
-```
+```js
 function emailActiveClients(clients) {
   clients
     .filter(isActiveClient)
@@ -99,7 +99,7 @@ function isActiveClient(client) {
 
 Ruim:
 
-```
+```js
 function addToDate(date, month) {
   // ...
 }
@@ -112,7 +112,7 @@ addToDate(date, 1);
 
 Bom:
 
-```
+```js
 function addMonthToDate(month, date) {
   // ...
 }
@@ -126,7 +126,7 @@ Flags falam para o seu usuário que sua função faz mais de uma coisa. Funçõe
 
 Ruim:
 
-```
+```js
 function createFile(name, temp) {
   if (temp) {
     fs.create(`./temp/${name}`);
@@ -138,7 +138,7 @@ function createFile(name, temp) {
 
 Bom:
 
-```
+```js
 function createFile(name) {
   fs.create(name);
 }
@@ -153,7 +153,7 @@ JavaScript não é uma linguagem funcional da mesma forma que Haskell é, mas te
 
 Ruim:
 
-```
+```js
 const programmerOutput = [
   {
     name: 'Uncle Bobby',
@@ -179,7 +179,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 
 Bom:
 
-```
+```js
 const programmerOutput = [
   {
     name: 'Uncle Bobby',
@@ -206,7 +206,7 @@ const totalOutput = programmerOutput
 
 Ruim:
 
-```
+```js
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
   // ...
 }
@@ -214,7 +214,7 @@ if (fsm.state === 'fetching' && isEmpty(listNode)) {
 
 Bom:
 
-```
+```js
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
 }
@@ -228,7 +228,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 Ruim:
 
-```
+```js
 function isDOMNodeNotPresent(node) {
   // ...
 }
@@ -240,7 +240,7 @@ if (!isDOMNodeNotPresent(node)) {
 
 Bom:
 
-```
+```js
 function isDOMNodePresent(node) {
   // ...
 }
