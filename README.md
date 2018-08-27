@@ -1,10 +1,11 @@
 # frontend-code-review
-Structure for code review flow
+Coletânea de boas práticas para code review mais objetivo
 
-Evite Mapeamento Mental
+### Evite Mapeamento Mental
 Explicito é melhor que implícito.
 
 Ruim:
+
 ```
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
@@ -17,7 +18,9 @@ locations.forEach((l) => {
   dispatch(l);
 });
 ```
+
 Bom:
+
 ```
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((location) => {
@@ -29,10 +32,12 @@ locations.forEach((location) => {
   dispatch(location);
 });
 ```
-Não adicione contextos desnecessários
+
+### Não adicione contextos desnecessários
 Se o nome de sua classe/objeto já lhe diz alguma coisa, não as repita nos nomes de suas variáveis.
 
 Ruim:
+
 ```
 const Car = {
   carMake: 'Honda',
@@ -44,7 +49,9 @@ function paintCar(car) {
   car.carColor = 'Red';
 }
 ```
+
 Bom:
+
 ```
 const Car = {
   make: 'Honda',
@@ -56,10 +63,12 @@ function paintCar(car) {
   car.color = 'Red';
 }
 ```
-Funções devem fazer uma coisa
+
+### Funções devem fazer uma coisa
 Essa é de longe a regra mais importante em engenharia de software. Quando funções fazem mais que uma coisa, elas se tornam difíceis de serem compostas, testadas e raciocinadas. Quando você pode isolar uma função para realizar apenas uma ação, elas podem ser refatoradas facilmente e seu código ficará muito mais limpo. Se você não levar mais nada desse guia além disso, você já estará na frente de muitos desenvolvedores.
 
 Ruim:
+
 ```
 function emailClients(clients) {
   clients.forEach((client) => {
@@ -70,7 +79,9 @@ function emailClients(clients) {
   });
 }
 ```
+
 Bom:
+
 ```
 function emailActiveClients(clients) {
   clients
@@ -83,8 +94,11 @@ function isActiveClient(client) {
   return clientRecord.isActive();
 }
 ```
-Nomes de funções devem dizer o que elas fazem
+
+### Nomes de funções devem dizer o que elas fazem
+
 Ruim:
+
 ```
 function addToDate(date, month) {
   // ...
@@ -95,7 +109,9 @@ const date = new Date();
 // É difícil dizer pelo nome da função o que é adicionado
 addToDate(date, 1);
 ```
+
 Bom:
+
 ```
 function addMonthToDate(month, date) {
   // ...
@@ -104,10 +120,12 @@ function addMonthToDate(month, date) {
 const date = new Date();
 addMonthToDate(1, date);
 ```
-Não use flags como parâmetros de funções
+
+### Não use flags como parâmetros de funções
 Flags falam para o seu usuário que sua função faz mais de uma coisa. Funções devem fazer apenas uma coisa. Divida suas funções se elas estão seguindo caminhos de código diferentes baseadas em um valor boleano.
 
 Ruim:
+
 ```
 function createFile(name, temp) {
   if (temp) {
@@ -117,7 +135,9 @@ function createFile(name, temp) {
   }
 }
 ```
+
 Bom:
+
 ```
 function createFile(name) {
   fs.create(name);
@@ -127,10 +147,12 @@ function createTempFile(name) {
   createFile(`./temp/${name}`);
 }
 ```
-Favoreça programação funcional sobre programação imperativa
+
+### Favoreça programação funcional sobre programação imperativa
 JavaScript não é uma linguagem funcional da mesma forma que Haskell é, mas tem um toque de funcional em si. Linguagens funcionais são mais limpas e fáceis de se testar. Favoreça esse tipo de programação quando puder.
 
 Ruim:
+
 ```
 const programmerOutput = [
   {
@@ -154,7 +176,9 @@ for (let i = 0; i < programmerOutput.length; i++) {
   totalOutput += programmerOutput[i].linesOfCode;
 }
 ```
+
 Bom:
+
 ```
 const programmerOutput = [
   {
@@ -178,15 +202,18 @@ const totalOutput = programmerOutput
   .map((programmer) => programmer.linesOfCode)
   .reduce((acc, linesOfCode) => acc + linesOfCode, INITIAL_VALUE);
 ```  
-  Encapsule condicionais
+### Encapsule condicionais
 
 Ruim:
+
 ```
 if (fsm.state === 'fetching' && isEmpty(listNode)) {
   // ...
 }
 ```
+
 Bom:
+
 ```
 function shouldShowSpinner(fsm, listNode) {
   return fsm.state === 'fetching' && isEmpty(listNode);
@@ -196,8 +223,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
   // ...
 }
 ```
-Evite negações de condicionais
+
+### Evite negações de condicionais
+
 Ruim:
+
 ```
 function isDOMNodeNotPresent(node) {
   // ...
@@ -207,7 +237,9 @@ if (!isDOMNodeNotPresent(node)) {
   // ...
 }
 ```
+
 Bom:
+
 ```
 function isDOMNodePresent(node) {
   // ...
