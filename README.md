@@ -1,4 +1,4 @@
-# frontend-code-review
+# Code Review Tips
 Coletânea de boas práticas para code review mais objetivo
 
 ### Evite Mapeamento Mental
