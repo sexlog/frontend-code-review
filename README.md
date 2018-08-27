@@ -6,7 +6,7 @@ Explicito é melhor que implícito.
 
 Ruim:
 
-```
+```js
 const locations = ['Austin', 'New York', 'San Francisco'];
 locations.forEach((l) => {
   doStuff();
