@@ -250,6 +250,46 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
+### Uma classe, serviço ou módulo deve ter apenas uma responsabilidade
+
+Ruim:
+
+```js
+// User.js
+export const sendEmail = (text, email) => {
+  email.send(text);
+};
+
+export const save = (user, db) => {
+  db.save(user);
+};
+```
+
+Bom:
+
+```js
+// User.js
+export const save = (user, db) => {
+  db.save(user);
+};
+
+// Email.js
+export const sendEmail = (text, email) => {
+  email.send(text);
+};
+
+// Orquestrador.js
+import save from './user';
+import sendEmail from './email';
+import db from 'db';
+import email from 'email';
+
+const saveUser = async () => {
+  await save('foo', db);
+  await sendEmail('bar', email);
+};
+```
+
 Conceito retirados do [Clean Code](https://github.com/felipe-augusto/clean-code-javascript) adaptação pt-br
 
 # Angular Tips
@@ -260,7 +300,7 @@ Neste caso, colocar as condições no Controller.
 Ruim:
 
 ```html
-  <div ng-if="user.premium && user.subscriber"></div>
+<div ng-if="user.premium && user.subscriber"></div>
 ```
 
 Bom:
