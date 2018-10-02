@@ -251,3 +251,24 @@ if (isDOMNodePresent(node)) {
 ```
 
 Conceito retirados do [Clean Code](https://github.com/felipe-augusto/clean-code-javascript) adaptação pt-br
+
+# Angular Tips
+
+### Evite condições na view
+Neste caso, colocar as condições no Controller.
+
+Ruim:
+
+```html
+  <div ng-if="user.premium && user.subscriber"></div>
+```
+
+Bom:
+
+```html
+  <div ng-if="shouldShowThisElement()"></div>
+```
+
+```js
+  this.shouldShowThisElement = user => user.premium && user.subscriber;
+```
