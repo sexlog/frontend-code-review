@@ -266,9 +266,47 @@ Ruim:
 Bom:
 
 ```html
-  <div ng-if="shouldShowThisElement()"></div>
+<div ng-if="shouldShowThisElement(user)"></div>
 ```
 
 ```js
-  this.shouldShowThisElement = user => user.premium && user.subscriber;
+this.shouldShowThisElement = user => user.premium && user.subscriber;
+```
+
+### Usar constantes ao comparar valores númericos ou que não tem um sentido semântico
+O AngularJS oferece suporte a constantes. É possível injetá-los em controllers e services.
+
+Ruim:
+
+```js
+this.showUser = user => user.status === 1;
+```
+
+Bom:
+
+```js
+this.showUser = user => user.status === USER.ACTIVE;
+```
+
+### Evitar injetar o serviço $scope dentro do controller
+Prefira usar this
+
+Ruim:
+
+```js
+angular
+  .module('Sexlog')
+  .controller(function($scope) {
+    $scope.name = 'foo';
+  });
+```
+
+Bom:
+
+```js
+angular
+  .module('Sexlog')
+  .controller(function() {
+    this.name = 'foo';
+  });
 ```
