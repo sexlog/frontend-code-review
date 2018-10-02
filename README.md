@@ -274,19 +274,19 @@ export const save = (user, db) => {
 };
 
 // Email.js
-export const sendEmail = (text, email) => {
+export const send = (text, email) => {
   email.send(text);
 };
 
 // Orquestrador.js
 import save from './user';
-import sendEmail from './email';
+import send from './email';
 import db from 'db';
 import email from 'email';
 
 const saveUser = async () => {
   await save('foo', db);
-  await sendEmail('bar', email);
+  await send('bar', email);
 };
 ```
 
